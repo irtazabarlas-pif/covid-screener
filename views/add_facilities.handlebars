@@ -1,0 +1,24 @@
+
+<h1 class="text-center mb-3">{{title}}</h1>
+<form action="/api/facilities" method="POST" class="mb-4 ml-4 mr-4">
+    <div class="form-group">
+        <label for="name">Name of the facility:</label>
+        <input type="text" name="name" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="active_from">Date Screening is Active From:</label>
+        <input type="text" name="active_from" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="flow">Screen Flowchart (JSON):</label>
+        <textarea rows="5" name="flow" class="form-control"></textarea>
+    </div>
+    <input type="submit" value="Add Facility" class="btn btn-primary btn-block">
+</form>
+<hr />
+<h4 class="mb-4 ml-4 mr-4">Facilities</h4>
+<ol class="list-group mb-4 ml-4 mr-4" >
+    {{#each facilities}}
+        <li class="list-group-item">{{this.name}} Created On {{this.created_on}} Flowchart id: <a href='api/flows/{{this.flow_id}}'> {{this.flow_id}} </a></li>
+    {{/each}}
+</ol>

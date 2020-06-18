@@ -1,0 +1,171 @@
+<div id="intake">
+    {{flow}}
+</div>
+<script>
+
+    var flow=document.getElementById('intake').innerHTML;
+    
+    console.log('in the flow: ' + flow.start);
+
+    function create_card_element(id, card_header, card_body, card_footer, card_btns)
+    {
+        let el = document.createElement("DIV");
+        el.className = "card text-center mt-5";
+        el.id = "card-" + id;
+        
+        if(card_header!=="") {
+            let hdr = document.createElement("DIV");
+            hdr.className = "bg-dark text-light card-header";
+            hdr.innerHTML = card_header;
+            hdr.id = el.id + "-hdr"
+            el.appendChild(hdr);
+        }
+
+        if(card_body!=="") {
+            let bdy = document.createElement("DIV");
+            bdy.className = "card-body";
+            bdy.innerHTML = card_body;
+            bdy.id = el.id + "-bdy"
+            el.appendChild(bdy);
+
+            let row = document.createElement("DIV");
+            row.className = "card-row text-right";
+            el.appendChild(row);
+            if(card_btns.length > 0)
+            {
+                card_btns.forEach(element => {
+                    row.appendChild(element);
+                });   
+            }
+        }
+        
+        if(card_footer!=="")
+        {
+            let ftr = document.createElement("DIV");
+            ftr.className = "card-footer";
+            ftr.innerHTML = card_footer;
+            ftr.id = el.id + "-ftr"
+            el.appendChild(ftr);
+        }
+
+        return el;
+    }
+
+    function handler_next(called_by, next_flow_el, all_buttons) {
+        
+        if(next_flow_el==="") {
+            // reset
+            let node = document.getElementById("top_el");
+            node.querySelectorAll('*').forEach(n => n.remove());
+            
+            setTimeout(handler_next(undefined, first_flow_el), 1000);
+            return;            
+        }
+        let flow_el = flow[next_flow_el];
+        if(flow_el === undefined) 
+        {
+            console.log('Unknown flow element: ' + next_flow_el)
+            return;
+        }
+
+        // move buttons to footer
+        if(called_by!==undefined){
+            let ftr = document.getElementById(called_by.parentElement.parentElement.id + "-ftr");
+            console.log('footer: '+ "card-" + called_by.id + "-ftr");
+            if(ftr!==null)
+                ftr.innerHTML = called_by.innerHTML;
+            // called_by.style.display = "none";
+            if(all_buttons!==undefined)
+                all_buttons.forEach(element => {
+                    element.style.display = "none";
+                });
+
+        }
+
+        let card_hdr = "";
+        let card_bdy = "";
+        let card_ftr = "";
+        let card_btns = [];
+
+        if(flow_el.type === "statement") {
+            let nxt = flow_el.next;
+            card_bdy = flow_el.text;
+            card_hdr = `<svg class="bi bi-exclamation-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+</svg>  ` + flow_el.short;
+            card_ftr = " ";
+
+            if(nxt !== undefined && nxt!=="")
+            {
+                let btn = document.createElement("BUTTON");
+                btn.innerHTML=`<svg class="bi bi-arrow-down-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 5a.5.5 0 0 0-1 0v4.793L5.354 7.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 9.793V5z"/>
+</svg> Next`;
+                btn.className = "btn btn-primary mb-2 mr-2";
+                btn.id = nxt;
+                btn.addEventListener("click", function() { handler_next(btn, nxt, [btn]); }, false);    
+                card_btns.push(btn);
+            }
+            else {// last element
+                let btn = document.createElement("BUTTON");
+                btn.innerHTML=` <svg class="bi bi-arrow-clockwise" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z"/>
+  <path fill-rule="evenodd" d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z"/>
+</svg> Reset`;
+                btn.className = "btn btn-primary mb-2 mr-2";
+                btn.id = nxt;
+                btn.addEventListener("click", function() { handler_next(btn, nxt, [btn]); }, false);    
+                card_btns.push(btn);
+
+                card_ftr = "Valid for: " + Date(Date.now()).toLocaleString();
+            }
+        }
+        else if(flow_el.type === "bool_decision") {
+            console.log('boolean decision');
+            let nxt_yes = flow_el.yes;
+            let nxt_no = flow_el.no;
+            card_bdy = flow_el.text;
+            card_hdr = `<svg class="bi bi-question-diamond" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M6.95.435c.58-.58 1.52-.58 2.1 0l6.515 6.516c.58.58.58 1.519 0 2.098L9.05 15.565c-.58.58-1.519.58-2.098 0L.435 9.05a1.482 1.482 0 0 1 0-2.098L6.95.435zm1.4.7a.495.495 0 0 0-.7 0L1.134 7.65a.495.495 0 0 0 0 .7l6.516 6.516a.495.495 0 0 0 .7 0l6.516-6.516a.495.495 0 0 0 0-.7L8.35 1.134z"/>
+  <path d="M5.25 6.033h1.32c0-.781.458-1.384 1.36-1.384.685 0 1.313.343 1.313 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.007.463h1.307v-.355c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.326 0-2.786.647-2.754 2.533zm1.562 5.516c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+</svg> ` + flow_el.short;
+            card_ftr = " ";
+
+            if(nxt_yes !== undefined && nxt_no !== undefined)
+            {
+                let yes_btn = document.createElement("BUTTON");
+                yes_btn.innerHTML=`<svg class="bi bi-check2-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+  <path fill-rule="evenodd" d="M8 2.5A5.5 5.5 0 1 0 13.5 8a.5.5 0 0 1 1 0 6.5 6.5 0 1 1-3.25-5.63.5.5 0 1 1-.5.865A5.472 5.472 0 0 0 8 2.5z"/>
+</svg> Yes`;
+                yes_btn.className = "btn btn-primary  mb-2 mr-2";
+                yes_btn.id = nxt_yes;
+                
+                let no_btn = document.createElement("BUTTON");
+                no_btn.innerHTML=`<svg class="bi bi-x-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
+  <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
+</svg> No`;
+                no_btn.className = "btn btn-primary  mb-2 mr-2";
+                no_btn.id = nxt_no;
+                
+                yes_btn.addEventListener("click", function() { handler_next(yes_btn, nxt_yes, [yes_btn, no_btn]); }, false);
+                card_btns.push(yes_btn);
+                no_btn.addEventListener("click", function() { handler_next(no_btn, nxt_no, [yes_btn, no_btn]); }, false);
+                card_btns.push(no_btn);
+            }            
+        }
+        
+        let new_el = create_card_element(next_flow_el, card_hdr, card_bdy, card_ftr, card_btns);
+        document.getElementById('top_el').appendChild(new_el);    
+        new_el.scrollIntoView(false);
+    }
+    
+    let count = Object.keys(flow).length;
+    console.log('in the flow with ' + count + ' keys');
+    let first_flow_el = "start";
+    handler_next(undefined, first_flow_el);
+    
+</script>

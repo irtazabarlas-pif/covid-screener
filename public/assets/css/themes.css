@@ -1,0 +1,79 @@
+/* 
+    Themes defined here are for the bootstrap cards 
+    the 'theme' defined in the flowchart's state element can be "red" or "orange" etc.
+    When the card is being created it has a default class (card). 
+    The theme defined in the state is added to this class (red-card).
+*/
+
+.red-card {
+    background-color: rgba(255, 46, 46, 0.98);
+    color: white;
+    font-size: 1.3em;
+}
+
+.orange-card {
+    background-color: rgba(184, 112, 18, 0.856);
+    color: white;
+    font-size: 1.3em;
+}
+
+.green-card {
+    background-color: rgba(23, 143, 29, 0.486);
+    color: white;
+    font-size: 1.3em;
+}
+
+.black-card {
+    background-color: rgba(0, 0, 0, 0.486);
+    color: white;
+}
+
+.blue-card {
+    background-color: rgba(16, 30, 109, 0.486);
+    color: white;
+}
+
+.white-card {
+    background-color: white;
+    color: black;
+}
+
+
+.red-bg-dark{
+    background-color: rgb(44, 9, 9);    
+}
+.red-text-light {
+    color: white;
+}
+
+.orange-bg-dark {
+    background-color: rgba(119, 43, 14, 0.856);
+}
+
+.orange-text-light {
+    color: white;
+}
+
+.green-bg-dark {
+    background-color: rgba(8, 24, 9, 0.486);
+}
+
+.green-text-light {
+    color: white;
+}
+
+.black-bg-dark {
+    background-color: rgb(0, 0, 0);
+}
+
+.black-text-light {
+    color: white;
+}
+
+.blue-bg-dark {
+    background-color: rgba(4, 7, 24, 0.486);
+}
+
+.blue-text-light {
+    color: white;
+}
