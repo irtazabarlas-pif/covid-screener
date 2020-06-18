@@ -9,13 +9,13 @@ var cookieParser = require('cookie-parser');
 
 const app = express();
 
-const logger = (req, res, next) => {
-    console.log('Hello');
-    next();
-}
+// const logger = (req, res, next) => {
+//     console.log('Hello');
+//     next();
+// }
 
 // init middleware
-app.use(logger);
+// app.use(logger);
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 // app.use(cookieSession({name: 'session', keys: ['keyfortwilio']}));
