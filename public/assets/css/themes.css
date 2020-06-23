@@ -5,8 +5,12 @@
     The theme defined in the state is added to this class (red-card).
 */
 
+a:visited {
+    color: inherit;
+}
+
 .red-card {
-    background-color: rgba(255, 46, 46, 0.98);
+    background-color: rgba(61, 8, 8, 0.98);
     color: white;
     font-size: 1.3em;
 }
@@ -18,7 +22,7 @@
 }
 
 .green-card {
-    background-color: rgba(23, 143, 29, 0.486);
+    background-color: rgba(0, 92, 83, 1);
     color: white;
     font-size: 1.3em;
 }
@@ -35,7 +39,9 @@
 
 .white-card {
     background-color: white;
-    color: black;
+    color: rgba(51, 38, 123, 1);
+    font-size: large;
+    font-weight: bold;
 }
 
 

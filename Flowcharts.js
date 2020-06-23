@@ -146,7 +146,7 @@ const flowcharts = [
                 "type": "bool_decision",
                 "short": "Other Symptoms?",
                 "theme": "white-card",
-                "text": "In the past 3 days, have you had any of these symptoms?<ul><li>Fever or feeling feverish (chills, sweating)</li><li>Sore throat</li><li>Muscle pain or body aches</li><li>Vomiting or diarrhea</li><li>Change in smell or taste</li></ol>",
+                "text": "In the past 3 days, have you had any of these symptoms?<br><br><div class='text-left'><ul><li>Fever or feeling feverish (chills, sweating)</li><li>Sore throat</li><li>Muscle pain or body aches</li><li>Vomiting or diarrhea</li><li>Change in smell or taste</li></ol></div>",
                 "sms" : "In the past 3 days, have you had any of these symptoms? 1) Fever or feeling feverish (chills, sweating)  2) Sore throat 3) Muscle pain or body aches 4) Vomiting or diarrhea  5) Change in smell or taste. Please enter Yes or No",
                 "info": "Covid19 may have other less common symptoms.",
                 "yes" : "b10",
@@ -265,7 +265,10 @@ const flowcharts = [
             },
             "b1": {
                 "type": "bool_decision",
-                "text": "Have you experienced any of the following symptoms in the past 48 hours: <br>&#9830; feeling feverish (subjective or measured)<br>&#9830;cough, shortness of breath or difficulty breathing<br>&#9830;sore throat<br>&#9830;muscle or body aches<br>&#9830;diarrhea<br>&#9830;change in smell or taste?",
+                "text": `Have you experienced any of the following symptoms in the past 48 hours: <br><br>
+                        <div class='text-left'>
+                        &#9830; feeling feverish (subjective or measured)<br>&#9830; cough, shortness of breath or difficulty breathing<br>&#9830; sore throat<br>&#9830; muscle or body aches<br>&#9830; diarrhea<br>&#9830; change in smell or taste?
+                        </div>`,
                 "theme": "white-card",
                 "short": "Symptoms to Watch?",
                 "sms" : "Have you experienced any of the following symptoms in the past 48 hours: \n- feeling feverish (subjective or measured), \n- cough, shortness of breath or difficulty breathing, \n- sore throat, \n -muscle or body aches, \n- diarrhea, or \n- change in smell or taste? ",
@@ -297,16 +300,16 @@ const flowcharts = [
                 "type": "statement",
                 "short": "Do Not Enter",
                 "theme": "red-card",
-                "text": "Access to CDC Facilities Not Approved<br>Click <a style = 'color = 'yellow' href='https://www.cdc.gov/coronavirus/2019-ncov/downloads/managing-COVID19-in-correctional-detention.pdf'>Here</a> for Further Instructions.",
+                "text": "<span style='font-size:100px;'>&#9746;</span><br>Access to CDC Facilities Not Approved<br>Click <a style = 'color: yellow;' href='https://www.cdc.gov/coronavirus/2019-ncov/downloads/managing-COVID19-in-correctional-detention.pdf' title='Go to CDC More Instructions Document'>Here</a> for Further Instructions.",
                 "sms" : "Access to CDC Facilities Not Approved – Further Instructions: https://www.cdc.gov/coronavirus/2019-ncov/downloads/managing-COVID19-in-correctional-detention.pdf",
                 "info": "Your help in containing this epidemic is highly appreciate. Further instructions are available here: https://www.cdc.gov/coronavirus/2019-ncov/downloads/managing-COVID19-in-correctional-detention.pdf",
                 "next": "end"
             },
             "b20": {
                 "type": "statement",
-                "short": "Welcome!",
+                "short": "Welcome! &#9745;",
                 "theme": "weekday",
-                "text": "Access to CDC Facilities Approved.  OK to proceed.<br>please show this screen to security at the facility entrance.",
+                "text": "<span style='font-size:100px;'>&#9745;</span><br>Access to CDC Facilities Approved.  OK to proceed.<br>please show this screen to security at the facility entrance.",
                 "sms" : "Access to CDC Facilities Approved.  OK to proceed.\nPlease show this screen to security at the facility entrance.",
                 "info": "You can enter the facilities but follow safety protocols and Social Distancing.",
                 "next": ""
