@@ -82,9 +82,23 @@ const facilities = [
         weekday_card_text_color_array:  ['#ffffff','#ffffff','#080808','#ffffff','#000000','#000000','#ffffff '],
         sms_number: "+12029320550",
         flow_id: 5
-    }
-
-    
+    },
+    {
+        id: 6, 
+        name: '810/811 Vermont Ave',
+        image: 'https://prod-va-gov-assets.s3-us-gov-west-1.amazonaws.com/img/header-logo.png',
+        header_color: '#112e51',
+        header_text_color: '#ffffff',
+        created_by: 'Joseph Nassar',
+        created_on: '06/23/2020',
+        effective_from: '06/20/2020',
+        effective_till: '06/19/2021',
+        flow_enabled: true,
+        address: 'Any',
+        gps_coord: "",
+        sms_number: "",
+        flow_id: 2
+    },    
 ];
 
 function is_valid_facility_id(id) {
