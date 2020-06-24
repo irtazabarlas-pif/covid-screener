@@ -5,8 +5,57 @@
     The theme defined in the state is added to this class (red-card).
 */
 
-a:visited {
-    color: inherit;
+@media all and (max-width:478px){
+    .button-white{
+        
+        display:inline-block;
+        
+        margin-right:.5rem;
+        padding:.75rem .25rem;
+        text-align:center;
+        text-decoration:none;
+        width:100%;
+    }
+}
+
+@media all and (min-width:479px){
+    .button-white {
+        
+        display:inline-block;
+        
+        margin-right:.5rem;
+        padding:.75rem .25rem;
+        text-align:center;
+        text-decoration:none;
+        width:5em;
+    }
+}
+
+.button-white {
+    font-family:Source Sans Pro Web,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
+    font-size:1.06rem;
+    line-height:.9;
+    -moz-osx-font-smoothing:grayscale;
+    -webkit-font-smoothing:antialiased;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    background-color:#ffffff;
+    border:2px solid #005ea2;
+    border-radius:.25rem;
+    color:#005ea2;;
+    cursor:pointer;
+    
+    font-weight:700;
+    
+    text-decoration:none;
+    
+}
+
+.button-white:hover {
+    background-color: rgb(171, 164, 226)!important;
+    border: 2px rgba(63,81,181,1) solid;
+    color: rgba(63, 81, 181, 1);
 }
 
 .red-card {
@@ -33,8 +82,18 @@ a:visited {
 }
 
 .blue-card {
-    background-color: rgba(16, 30, 109, 0.486);
+    background-color: rgba(29, 74, 216, 1);
     color: white;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.cyan-card {
+    background-color: rgba(225, 243, 248, 1);
+    color: black;
+    font-size: 1.3em;
+    font-weight: bold;
+    font-weight: bold;
 }
 
 .white-card {

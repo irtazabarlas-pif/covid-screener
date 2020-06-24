@@ -85,7 +85,7 @@ const facilities = [
     },
     {
         id: 6, 
-        name: '810/811 Vermont Ave',
+        name: 'VA Facility Entrance Protocol For <br>810/811 Vermont Ave',
         image: 'https://prod-va-gov-assets.s3-us-gov-west-1.amazonaws.com/img/header-logo.png',
         header_color: '#112e51',
         header_text_color: '#ffffff',
@@ -97,7 +97,7 @@ const facilities = [
         address: 'Any',
         gps_coord: "",
         sms_number: "",
-        flow_id: 2
+        flow_id: 6
     },    
 ];
 

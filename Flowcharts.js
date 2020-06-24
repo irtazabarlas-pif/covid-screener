@@ -314,8 +314,76 @@ const flowcharts = [
                 "info": "You can enter the facilities but follow safety protocols and Social Distancing.",
                 "next": ""
             }
+        },   
+    },
+    {
+        "id": 6,
+        "flow": {
+            "start": {
+                "type": "bool_decision",
+                "short": "Travel Risk?",
+                "theme": "white-card",
+                "text": "<div class='text-left'>In the last 14 days, have you traveled internationally?<div>",
+                "sms" : "In the last 14 days, have you traveled internationally?",
+                "info": "Covid-19 is highly contagious, and there are several hotspots around the world that the traveling",
+                "yes" : "b10",
+                "no"  : "b1"
+            },
+            "b1": {
+                "type": "bool_decision",
+                "text": `<div class='text-left'>Are you experiencing any symptoms of COVID-19: <br><br>
+                        &#9830; coughing<br>&#9830; fever or chilss<br>&#9830; shortness of breath or difficulty breathing<br>
+                        &#9830; fatigue<br>&#9830; headache
+                        </div>`,
+                "theme": "white-card",
+                "short": "Symptoms to Watch?",
+                "sms" : "Are you experiencing any symptoms of COVID-19 (e.g., coughing, fever or chills, shortness of breath or difficulty breathing, fatigue, headache)?",
+                "info": "These are the most common symptoms associated with Covid-19.",
+                "yes" : "b10",
+                "no"  : "b2"
+            },
+            "b2": {
+                "type": "bool_decision",
+                "short": "Advised?",
+                "theme": "white-card",
+                "text": "<div class='text-left'>In the last 14 days, have you received instructions from a public health authority to self-observe, self-isolate, or self-quarantine?</div>",
+                "sms" : "Within the past 14 days, have you received instruction from a public health or medical professional to self-monitor, self-isolate, or self-quarantine because of concerns about COVID-19 infection? This includes you receiving a COVID-19 test recommended by a medical professional, with results still pending. Please enter Yes or No",
+                "info": "Covid-19 is best contained through self-quarantine and social distancing. You should take safety measure even when test results are pending.",
+                "yes" : "b10",
+                "no"  : "b3"
+            },            
+            "b3": {
+                "type": "bool_decision",
+                "short": "Proximity Risk?",
+                "theme": "white-card",
+                "text": "<div class='text-left'>In the last 14 days, have you been diagnosed with or been in close contact with a person diagnosed with COVID-19?</div>",
+                "sms" : "Within the past 14 days, have you received instruction from a public health or medical professional to self-monitor, self-isolate, or self-quarantine because of concerns about COVID-19 infection? This includes you receiving a COVID-19 test recommended by a medical professional, with results still pending. Please enter Yes or No",
+                "info": "Covid-19 is best contained through self-quarantine and social distancing. You should take safety measure even when test results are pending.",
+                "yes" : "b10",
+                "no"  : "b20"
+            },                        
+            "b10": {
+                "type": "statement",
+                "short": "Screening Needed",
+                "theme": "cyan-card",
+                "text": "<span style='font-size:2.5em; line-height: 1.2em;'>More Screening Needed.</span><br>Valid for $DATETIME.<br>Please show this screen to security at the facility entrance.",
+                "sms" : "Access to VA Building Not Approved.",
+                "info": "Your help in containing this epidemic is highly appreciate.",
+                "next": ""
+            },
+            "b20": {
+                "type": "statement",
+                "short": "<span style='text-align: center;'>Welcome!</span>",
+                "theme": "blue-card",
+                "text": `<span style='font-size:50px; text-align: center;'>&#9745;</span><br>
+                        <span style='font-size: 2em; line-height: 1.2em; text-align: left;'>Access to the VA Buildings 810/811 Vermont Ave Approved.</span>
+                        <br>Valid for $DATETIME.<br>Please show this screen to security at the facility entrance.`,
+                "sms" : "Access to the VA Buildings 810/811 Vermont Ave Approved.\nPlease show this screen to security at the facility entrance.",
+                "info": "You can enter the facilities but follow safety protocols and Social Distancing.",
+                "next": ""
+            }
         },
-    }      
+    }          
 ];
 
 module.exports = flowcharts;
