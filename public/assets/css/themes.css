@@ -6,15 +6,17 @@
 */
 
 @media all and (max-width:478px){
-    .button-white{
-        
-        display:inline-block;
-        
+    .button-white{        
+        display:inline-block;        
         margin-right:.5rem;
         padding:.75rem .25rem;
         text-align:center;
         text-decoration:none;
-        width:100%;
+        width:100%;        
+    }
+
+    .red-card, .orange-card, .green-card, .blue-card, .black-card, .cyan-card, .white-card {
+        font-size: 24px;
     }
 }
 
@@ -28,6 +30,10 @@
         text-align:center;
         text-decoration:none;
         width:5em;
+    }
+
+    .red-card, .orange-card, .green-card, .blue-card, .black-card, .cyan-card, .white-card {
+        font-size: 2rem;
     }
 }
 
@@ -61,19 +67,16 @@
 .red-card {
     background-color: rgba(61, 8, 8, 0.98);
     color: white;
-    font-size: 1.3em;
 }
 
 .orange-card {
     background-color: rgba(184, 112, 18, 0.856);
     color: white;
-    font-size: 1.3em;
 }
 
 .green-card {
     background-color: rgba(0, 92, 83, 1);
     color: white;
-    font-size: 1.3em;
 }
 
 .black-card {
@@ -84,22 +87,18 @@
 .blue-card {
     background-color: rgba(29, 74, 216, 1);
     color: white;
-    font-size: 1.3em;
     font-weight: bold;
 }
 
 .cyan-card {
     background-color: rgba(225, 243, 248, 1);
     color: black;
-    font-size: 1.3em;
-    font-weight: bold;
     font-weight: bold;
 }
 
 .white-card {
     background-color: white;
-    color: rgba(51, 38, 123, 1);
-    font-size: large;
+    color: rgba(51, 38, 123, 1);    
     font-weight: bold;
 }
 
