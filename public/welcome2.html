@@ -244,14 +244,12 @@
             if(called_by.classList.contains('button-white')) {
                // this button is not selected
                called_by.classList.toggle( "button-white" );
-               called_by.classList.toggle( "usa-button" );
-               called_by.classList.toggle( "usa-button-big" );
+               called_by.classList.toggle( "button-blue" );               
 
                if(sibling_btn !== undefined) {
-                    if(sibling_btn.classList.contains('usa-button')) {
+                    if(sibling_btn.classList.contains('button-blue')) {
                         sibling_btn.classList.toggle( "button-white" );
-                        sibling_btn.classList.toggle( "usa-button" );
-                        sibling_btn.classList.toggle( "usa-button-big" );
+                        sibling_btn.classList.toggle( "button-blue" );                        
                     }
                 }
             }                
@@ -285,7 +283,7 @@
             {
                 let btn = document.createElement("BUTTON");
                 btn.innerHTML=`Next`;
-                btn.className = "button-white "; //"btn btn-primary mb-2 mr-2";
+                btn.className = "button-general button-white "; //"btn btn-primary mb-2 mr-2";
                 btn.tabIndex = 0;
                 // btn.id = id;
                 btn.addEventListener("click", function() { handler_next(btn, nxt, [btn]); }, false);    
@@ -295,7 +293,7 @@
                 if(nxt !== "end") {
                     let btn = document.createElement("BUTTON");
                     btn.innerHTML=`Reset`;
-                    btn.className = "button-white"; //"btn btn-primary mb-2 mr-2";
+                    btn.className = "button-general button-white"; //"btn btn-primary mb-2 mr-2";
                     btn.tabIndex = 0;
                     // btn.id = id;
                     btn.addEventListener("click", function() { handler_next(btn, nxt, [btn]); }, false);    
@@ -315,13 +313,13 @@
             {
                 let yes_btn = document.createElement("BUTTON");
                 yes_btn.innerHTML=`Yes`;
-                yes_btn.className = "button-white" ; //"btn btn-primary  mb-2 mr-2";
+                yes_btn.className = "button-general button-white" ; //"btn btn-primary  mb-2 mr-2";
                 yes_btn.tabIndex = 0;
                 // yes_btn.id = nxt_yes;
                 
                 let no_btn = document.createElement("BUTTON");
                 no_btn.innerHTML=`No`;
-                no_btn.className = "button-white"; //"btn btn-primary  mb-2 mr-2";
+                no_btn.className = "button-general button-white"; //"btn btn-primary  mb-2 mr-2";
                 no_btn.tabIndex = 0;
                 // no_btn.id = nxt_no;
                 

@@ -6,7 +6,7 @@
 */
 
 @media all and (max-width:478px){
-    .button-white{        
+    .button-general{        
         display:inline-block;  
         font-size:1.3rem;
         font-weight:700;      
@@ -17,13 +17,16 @@
         width:100%;        
     }
 
+    .button-blue{
+
+    }
     .red-card, .orange-card, .green-card, .blue-card, .black-card, .cyan-card, .white-card {
         font-size: 24px;
     }
 }
 
 @media all and (min-width:479px){
-    .button-white {
+    .button-general {
         
         display:inline-block;
         font-size:1.3rem;
@@ -40,7 +43,7 @@
     }
 }
 
-.button-white {
+.button-general {
     font-family:Source Sans Pro Web,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
     
     line-height:.9;
@@ -49,20 +52,33 @@
     -webkit-appearance:none;
     -moz-appearance:none;
     appearance:none;
+    border-radius:.25rem;    
+    cursor:pointer;
+    text-decoration:none;    
+}
+
+.button-white {
+    color:#005ea2;;
     background-color:#ffffff;
     border:2px solid #005ea2;
-    border-radius:.25rem;
-    color:#005ea2;;
-    cursor:pointer;
-    
-    text-decoration:none;
-    
+}
+
+.button-blue {
+    background-color:#005ea2;;
+    color:#ffffff;
+    border:2px solid #005ea2;
 }
 
 .button-white:hover {
     background-color: rgb(171, 164, 226)!important;
     border: 2px rgba(63,81,181,1) solid;
     color: rgba(63, 81, 181, 1);
+}
+
+.button-blue:hover {
+    background-color: rgb(0, 0, 0)!important;
+    border: 2px rgba(63,81,181,1) solid;
+    color: rgb(255, 255, 255);
 }
 
 .red-card {

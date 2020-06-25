@@ -40,52 +40,52 @@ router.get('/:id', (req, res) => {
     }
 });
 
-// create flow
-router.post('/', (req, res) => {
-    console.log('creating flow...' + req.body)
-    const newflow = {
-        id: uuid.v4(),
-        flow: req.body.flow,        
-    };
+// // create flow
+// router.post('/', (req, res) => {
+//     console.log('creating flow...' + req.body)
+//     const newflow = {
+//         id: uuid.v4(),
+//         flow: req.body.flow,        
+//     };
 
-    flows.push(newflow);
-    //res.json(flows);
-    res.redirect('/');
-});
+//     flows.push(newflow);
+//     //res.json(flows);
+//     res.redirect('/');
+// });
 
-// update flow
-router.put('/:id', (req, res) => {    
-    console.log('updating');
-    const found = flows.some(flow => flow.id === parseInt(req.params.id));
+// // update flow
+// router.put('/:id', (req, res) => {    
+//     console.log('updating');
+//     const found = flows.some(flow => flow.id === parseInt(req.params.id));
 
-    if(found) {
-        const updflow = req.body;
-        flows.forEach(flow => {
-            if(flow.id === parseInt(req.params.id)) {
-                flow.name = updflow.name ? updflow.name : flow.name;
-                flow.effective_from = updflow.effective_from ? updflow.effective_from : flow.name;
-                flow.effective_till = updflow.effective_till ? updflow.effective_till : flow.effective_till;
+//     if(found) {
+//         const updflow = req.body;
+//         flows.forEach(flow => {
+//             if(flow.id === parseInt(req.params.id)) {
+//                 flow.name = updflow.name ? updflow.name : flow.name;
+//                 flow.effective_from = updflow.effective_from ? updflow.effective_from : flow.name;
+//                 flow.effective_till = updflow.effective_till ? updflow.effective_till : flow.effective_till;
 
-                res.json({ msg: 'flow updated: ', flow});
-            }
-        });
-    } else {
-        res.status(400).json({ msg: `no flow with the id of ${req.params.id}`});
-    }
-});
+//                 res.json({ msg: 'flow updated: ', flow});
+//             }
+//         });
+//     } else {
+//         res.status(400).json({ msg: `no flow with the id of ${req.params.id}`});
+//     }
+// });
 
-// delete flow
-router.delete('/:id', (req, res) => {
-    console.log('deleting');
-    const found = flows.some(flow => flow.id === parseInt(req.params.id));
+// // delete flow
+// router.delete('/:id', (req, res) => {
+//     console.log('deleting');
+//     const found = flows.some(flow => flow.id === parseInt(req.params.id));
 
-    if(found) {
-        res.json({ msg: 'flow deleted', flows: flows.filter(flow => flow.id !== parseInt(req.params.id))});
-    } else {
-        res.status(400).json({ msg: `no flow with id of ${req.params.id}`});
-    }
-});
+//     if(found) {
+//         res.json({ msg: 'flow deleted', flows: flows.filter(flow => flow.id !== parseInt(req.params.id))});
+//     } else {
+//         res.status(400).json({ msg: `no flow with id of ${req.params.id}`});
+//     }
+// });
 
 module.exports = router; 
-module.exports.add_flow = add_flow; 
+// module.exports.add_flow = add_flow; 
 
