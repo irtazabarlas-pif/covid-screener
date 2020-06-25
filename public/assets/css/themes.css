@@ -7,7 +7,9 @@
 
 @media all and (max-width:478px){
     .button-white{        
-        display:inline-block;        
+        display:inline-block;  
+        font-size:1.3rem;
+        font-weight:700;      
         margin-right:.5rem;
         padding:.75rem .25rem;
         text-align:center;
@@ -24,7 +26,8 @@
     .button-white {
         
         display:inline-block;
-        
+        font-size:1.3rem;
+        font-weight:700;
         margin-right:.5rem;
         padding:.75rem .25rem;
         text-align:center;
@@ -39,7 +42,7 @@
 
 .button-white {
     font-family:Source Sans Pro Web,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
-    font-size:1.06rem;
+    
     line-height:.9;
     -moz-osx-font-smoothing:grayscale;
     -webkit-font-smoothing:antialiased;
@@ -51,8 +54,6 @@
     border-radius:.25rem;
     color:#005ea2;;
     cursor:pointer;
-    
-    font-weight:700;
     
     text-decoration:none;
     

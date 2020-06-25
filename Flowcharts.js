@@ -321,7 +321,7 @@ const flowcharts = [
         "flow": {
             "start": {
                 "type": "bool_decision",
-                "short": "Travel Risk?",
+                "short": "", //Travel Risk?",
                 "theme": "white-card",
                 "text": "<div class='text-left'>In the last 14 days, have you traveled internationally?<div>",
                 "sms" : "In the last 14 days, have you traveled internationally?",
@@ -331,10 +331,9 @@ const flowcharts = [
             },
             "b1": {
                 "type": "bool_decision",
-                "short": "Symptoms to Watch?",
-                "text": `<div class='text-left'>Are you experiencing any symptoms of COVID-19: <br><br>
-                        &#9830; coughing<br>&#9830; fever or chilss<br>&#9830; shortness of breath or difficulty breathing<br>
-                        &#9830; fatigue<br>&#9830; headache
+                "short": "", //Symptoms to Watch?",
+                "text": `<div class='text-left'>Are you experiencing any symptoms of COVID-19: <br><br><ul>
+                        <li> coughing</li><li> fever or chilss</li><li> shortness of breath or difficulty breathing</li><li> fatigue</li><li> headache</li></ul>
                         </div>`,
                 "theme": "white-card",                
                 "sms" : "Are you experiencing any symptoms of COVID-19 (e.g., coughing, fever or chills, shortness of breath or difficulty breathing, fatigue, headache)?",
@@ -344,7 +343,7 @@ const flowcharts = [
             },
             "b2": {
                 "type": "bool_decision",
-                "short": "Prior Advice?",
+                "short": "", //Prior Advice?",
                 "theme": "white-card",
                 "text": "<div class='text-left'>In the last 14 days, have you received instructions from a public health authority to self-observe, self-isolate, or self-quarantine?</div>",
                 "sms" : "Within the past 14 days, have you received instruction from a public health or medical professional to self-monitor, self-isolate, or self-quarantine because of concerns about COVID-19 infection? This includes you receiving a COVID-19 test recommended by a medical professional, with results still pending. Please enter Yes or No",
@@ -354,7 +353,7 @@ const flowcharts = [
             },            
             "b3": {
                 "type": "bool_decision",
-                "short": "Proximity Risk?",
+                "short": "", //Proximity Risk?",
                 "theme": "white-card",
                 "text": "<div class='text-left'>In the last 14 days, have you been diagnosed with or been in close contact with a person diagnosed with COVID-19?</div>",
                 "sms" : "Within the past 14 days, have you received instruction from a public health or medical professional to self-monitor, self-isolate, or self-quarantine because of concerns about COVID-19 infection? This includes you receiving a COVID-19 test recommended by a medical professional, with results still pending. Please enter Yes or No",
@@ -364,10 +363,10 @@ const flowcharts = [
             },                        
             "b10": {
                 "type": "statement",
-                "short": "Screening Needed",
+                "short": "", //Screening Needed",
                 "theme": "cyan-card",
                 "text": `<span style='font-size:2.5em; line-height: 1.2em;'>More Screening Needed.</span>
-                        <hr><div style='color: yellow;background-color: blue;'>Valid for $DATETIME.</div>
+                        <hr>Valid for $DATETIME.
                         <hr>Please show this screen to security at the facility entrance.`,
                 "sms" : "Access to VA Building Not Approved.",
                 "info": "Your help in containing this epidemic is highly appreciate.",
@@ -375,11 +374,11 @@ const flowcharts = [
             },
             "b20": {
                 "type": "statement",
-                "short": "<span style='text-align: center;'>Welcome!</span>",
+                "short": "", //<span style='text-align: center;'>Welcome!</span>",
                 "theme": "blue-card",
                 "text": `<span style='font-size:50px; text-align: center;'>&#9745;</span><br>
                         <span style='font-size: 2em; line-height: 1.2em; text-align: left;'>810/811 Vermont Ave Access Approved.</span>
-                        <hr><span style='color: yellow;'>Valid for $DATETIME.</span><hr>Please show this screen to security at the facility entrance.`,
+                        <hr>Valid for $DATETIME.<hr>Please show this screen to security at the facility entrance.`,
                 "sms" : "Access to the VA Buildings 810/811 Vermont Ave Approved.\nPlease show this screen to security at the facility entrance.",
                 "info": "You can enter the facilities but follow safety protocols and Social Distancing.",
                 "next": ""
