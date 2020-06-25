@@ -333,7 +333,7 @@ const flowcharts = [
                 "type": "bool_decision",
                 "short": "", //Symptoms to Watch?",
                 "text": `<div class='text-left'>Are you experiencing any symptoms of COVID-19: <br><br><ul>
-                        <li> coughing</li><li> fever or chilss</li><li> shortness of breath or difficulty breathing</li><li> fatigue</li><li> headache</li></ul>
+                        <li> coughing</li><li> fever or chills</li><li> shortness of breath or difficulty breathing</li><li> fatigue</li><li> headache</li></ul>
                         </div>`,
                 "theme": "white-card",                
                 "sms" : "Are you experiencing any symptoms of COVID-19 (e.g., coughing, fever or chills, shortness of breath or difficulty breathing, fatigue, headache)?",
