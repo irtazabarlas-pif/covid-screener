@@ -80,12 +80,12 @@ const facilities = [
         weekday_text_color_array: ['#080808','#080808','#080808','#080808','#080808','#080808','#080808 '],
         weekday_card_bg_color_array:    ['#00ff00','#0000ff','#ffeb3b','#9c27b0','#00bcd4','#8bc34a','#795548'],
         weekday_card_text_color_array:  ['#ffffff','#ffffff','#080808','#ffffff','#000000','#000000','#ffffff '],
-        sms_number: "+12029320550",
+        sms_number: "",
         flow_id: 5
     },
     {
         id: 6, 
-        name: '810/811 Vermont Ave',
+        name: 'VA Facility Entrance Protocol For 810/811 Vermont Ave',
         image: 'https://prod-va-gov-assets.s3-us-gov-west-1.amazonaws.com/img/header-logo.png',
         header_color: '#112e51',
         header_text_color: '#ffffff',
@@ -96,8 +96,8 @@ const facilities = [
         flow_enabled: true,
         address: 'Any',
         gps_coord: "",
-        sms_number: "",
-        flow_id: 2
+        sms_number: "+12029320550",
+        flow_id: 6
     },    
 ];
 

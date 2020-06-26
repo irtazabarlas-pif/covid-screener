@@ -3,8 +3,6 @@ const path = require('path');
 const exphbs = require('express-handlebars');
 const facilities = require('./Facilities');
 const flows = require('./Flowcharts');
-
-// var cookieSession = require('cookie-session');
 var cookieParser = require('cookie-parser');
 
 const app = express();
@@ -18,7 +16,6 @@ const app = express();
 // app.use(logger);
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
-// app.use(cookieSession({name: 'session', keys: ['keyfortwilio']}));
 app.use(cookieParser());
 
 // Handlebars Middleware
