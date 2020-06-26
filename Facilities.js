@@ -96,7 +96,7 @@ const facilities = [
         flow_enabled: true,             // overall control
         address: 'Any',                 // TODO
         gps_coord: "",                  // TODO
-        sms_number: "+12029320550",     // TODO
+        sms_number: "",                 // TODO
         flow_id: 6                      // ID of the FlowChart 
                                         //      to use for this facility
     },    
