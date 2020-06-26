@@ -84,20 +84,21 @@ const facilities = [
         flow_id: 5
     },
     {
-        id: 6, 
+        id: 6, // each facility has its unique ID
         name: 'VA Facility Entrance Protocol For 810/811 Vermont Ave',
         image: 'https://prod-va-gov-assets.s3-us-gov-west-1.amazonaws.com/img/header-logo.png',
         header_color: '#112e51',
-        header_text_color: '#ffffff',
-        created_by: 'Joseph Nassar',
-        created_on: '06/23/2020',
-        effective_from: '06/20/2020',
-        effective_till: '06/19/2021',
-        flow_enabled: true,
-        address: 'Any',
-        gps_coord: "",
-        sms_number: "+12029320550",
-        flow_id: 6
+        header_text_color: '#ffffff',   //TODO
+        created_by: 'Joseph Nassar',    // For record
+        created_on: '06/23/2020',       // For record
+        effective_from: '06/20/2020',   // Work after this date
+        effective_till: '06/19/2021',   // Work before this date
+        flow_enabled: true,             // overall control
+        address: 'Any',                 // TODO
+        gps_coord: "",                  // TODO
+        sms_number: "+12029320550",     // TODO
+        flow_id: 6                      // ID of the FlowChart 
+                                        //      to use for this facility
     },    
 ];
 
