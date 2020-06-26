@@ -80,7 +80,7 @@ const facilities = [
         weekday_text_color_array: ['#080808','#080808','#080808','#080808','#080808','#080808','#080808 '],
         weekday_card_bg_color_array:    ['#00ff00','#0000ff','#ffeb3b','#9c27b0','#00bcd4','#8bc34a','#795548'],
         weekday_card_text_color_array:  ['#ffffff','#ffffff','#080808','#ffffff','#000000','#000000','#ffffff '],
-        sms_number: "+12029320550",
+        sms_number: "",
         flow_id: 5
     },
     {
@@ -96,7 +96,7 @@ const facilities = [
         flow_enabled: true,
         address: 'Any',
         gps_coord: "",
-        sms_number: "",
+        sms_number: "+12029320550",
         flow_id: 6
     },    
 ];
