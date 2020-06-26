@@ -317,17 +317,21 @@ const flowcharts = [
         },   
     },
     {
-        "id": 6,
-        "flow": {
-            "start": {
-                "type": "bool_decision",
-                "short": "", //Travel Risk?",
-                "theme": "white-card",
-                "text": "<div class='text-left'>In the last 14 days, have you traveled internationally?<div>",
-                "sms" : "In the last 14 days, have you traveled internationally?",
-                "info": "Covid-19 is highly contagious, and there are several hotspots around the world that the traveling",
-                "yes" : "b10",
-                "no"  : "b1"
+        "id": 6,    // this id is used in Facility JSON
+        "flow": {   // the 'flow' JSON is used to control what appears
+            "start": {  // Name of the State. The FIRST state is ALWAYS 'start'
+                "type": "bool_decision",        // bool_decision OR 'statement'
+                                                // If type = statement, it has only one button 'next'.
+                "short": "", //Travel Risk?",   // OPTIONAL create a header for each question if available
+                "theme": "white-card",          // class from theme.css
+                "text": "In the last ...",      // text of the question
+                "sms" : "In the last ...",      // TODO: OPTIONAL: used if SMS is enabled
+                "info": "Highly contagious,...",// TODO: OPTIONAL: used in SMS right now
+                "yes" : "b10",                  // For boolean 'type', Yes Button points to this next state
+                "no"  : "b1"                    // For boolean 'type', No Button points to this next state
+                                                // If empty, that marks the END of the flow. If "end" is 
+                                                // explicitly used, as state, then Reset button is not shown.
+                                                
             },
             "b1": {
                 "type": "bool_decision",
