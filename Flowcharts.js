@@ -324,9 +324,9 @@ const flowcharts = [
                                                 // If type = statement, it has only one button 'next'.
                 "short": "", //Travel Risk?",   // OPTIONAL create a header for each question if available
                 "theme": "white-card",          // class from theme.css
-                "text": "In the last ...",      // text of the question
-                "sms" : "In the last ...",      // TODO: OPTIONAL: used if SMS is enabled
-                "info": "Highly contagious,...",// TODO: OPTIONAL: used in SMS right now
+                "text": "<div class='text-left'>In the last 14 days, have you traveled internationally?<div>",      // text of the question
+                "sms" : "In the last 14 days, have you traveled internationally?",      // TODO: OPTIONAL: used if SMS is enabled
+                "info": "There are hotspots identified internationally.",// TODO: OPTIONAL: used in SMS right now
                 "yes" : "b10",                  // For boolean 'type', Yes Button points to this next state
                 "no"  : "b1"                    // For boolean 'type', No Button points to this next state
                                                 // If empty, that marks the END of the flow. If "end" is 
