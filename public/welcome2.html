@@ -33,6 +33,10 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/img/favicons/favicon-114.png">
     <!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/img/favicons/favicon-144.png">
+
+    <script async type="text/javascript" id="_fed_an_ua_tag"
+        src="https://dap.digitalgov.gov/Universal-Federated-AnalyticsMin.js?agency=GSA&subagency=TTS"></script>
+
   </head>
   <body>
     <section class="site-banner usa-banner" aria-label="Official government website">
@@ -239,7 +243,7 @@
                 }
             }
             
-            console.log('Sibling: ' + sibling_btn);
+            // console.log('Sibling: ' + sibling_btn);
 
             if(called_by.classList.contains('button-white')) {
                // this button is not selected
@@ -375,7 +379,7 @@
         }        
     }
 
-    // expecting /welcome.html?facility=1
+    // expecting /welcome2.html?facility=1
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     let facility_id;
