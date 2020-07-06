@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />  
+    <title>Covid-19 Screener</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        html {
+          scroll-behavior: smooth;
+        }
+    </style>
+    <link rel="stylesheet" href="/assets/css/themes.css">
+    
+    <!-- Favicons
+    ================================================== -->
+    <!-- 128x128 -->
+    <link rel="shortcut icon" type="image/ico" href="/assets/img/favicons/favicon.ico">
+    <link rel="icon" type="image/png" href="/assets/img/favicons/favicon.png">
+
+    <!-- 192x192, as recommended for Android
+    http://updates.html5rocks.com/2014/11/Support-for-theme-color-in-Chrome-39-for-Android
+    -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicons/favicon-192.png">
+
+    <!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+    <link rel="apple-touch-icon-precomposed" href="/assets/img/favicons/favicon-57.png">
+    <!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/img/favicons/favicon-72.png">
+    <!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/img/favicons/favicon-114.png">
+    <!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/img/favicons/favicon-144.png">
+
+    <script async type="text/javascript" id="_fed_an_ua_tag"
+        src="https://dap.digitalgov.gov/Universal-Federated-AnalyticsMin.js?agency=GSA&subagency=TTS"></script>
+
+  </head>
+  <body>
+    <section class="site-banner usa-banner" aria-label="Official government website">
+        <link rel="stylesheet" href="/assets/css/uswds.css" media="none" onload="if(media!='all')media='all'">
+        
+        <script async src="/assets/js/uswds.min.js"></script>   
+        <div class="usa-accordion">
+          <header class="usa-banner__header">
+            <div class="usa-banner__inner">
+              <div class="grid-col-auto">
+                <img class="usa-banner__header-flag" src="/assets/img/us_flag_small.png" alt="U.S. flag">
+              </div>
+              <div class="grid-col-fill tablet:grid-col-auto">
+                <p class="usa-banner__header-text">An official website of the United States government</p>
+                <p tabindex = "-1"  class="usa-banner__header-action">Here’s how you know</p>
+              </div>
+              <button class="usa-accordion__button usa-banner__button"
+                aria-expanded="false" aria-controls="gov-banner">
+                <span class="usa-banner__button-text">Here's how you know</span>
+              </button>
+            </div>
+          </header>
+          <div class="usa-banner__content usa-accordion__content" id="gov-banner">
+            <div class="grid-row grid-gap-lg">
+              <div class="usa-banner__guidance tablet:grid-col-6">
+                <img class="usa-banner__icon usa-media-block__img" src="/assets/img/icon-dot-gov.svg" alt="Dot gov">
+                <div class="usa-media-block__body">
+                  <p>
+                    <strong>The .gov means it’s official.</strong>
+                    <br>
+                    Federal government websites often end in .gov or .mil. Before sharing sensitive information, make sure you’re on a federal government site.
+                  </p>
+                </div>
+              </div>
+              <div class="usa-banner__guidance tablet:grid-col-6">
+                <img class="usa-banner__icon usa-media-block__img" src="/assets/img/icon-https.svg" alt="Https">
+                <div class="usa-media-block__body">
+                  <p>
+                    <strong>The site is secure.</strong>
+                    <br>
+                    The <strong>https://</strong> ensures that you are connecting to the official website and that any information you provide is encrypted and transmitted securely.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+    
+    
+    <div id="top_hdr" class="container-fluid" style="border-bottom:1px solid lightgray">
+        <img role="banner" id="top_hdr_img" alt="agency logo" src="" style="margin: 1em 0.5em 0.5em 0em;max-width:60%;
+        height:auto;">        
+    </div>
+    <div role="main">
+        <h1 id="top_hdr_info" tabindex="0" class="container-fluid text-center" style="font-size: 1.3em;">
+            Covid 19 Screening Tool
+        </h1>
+    </div>
+
+    <div id="top_statement" tabindex="0" role="complementary" tabindex="1" class="mt-4 container-fluid text-left"> Please answer the questions listed below. Share your results with the staff member at the facility entrance. We won't store or share your data.</div>
+    <div id="top_el" role="application" class="container mt-4">
+        
+    </div>
+
+    <div id="bottom_ftr_info" role="contentinfo" class="text-white bg-primary font-weight-light container-fluid text-center mt-4 mb-4">
+        <small>Thank you for helping us protect you and others during this time.</small>
+    </div>
+  </body>
+</html>
+
+<script>
+
+    function apply_variables_in_text(text_in) {
+        let vars = ['$DATETIME'];
+        let t = "";
+        let r = "";
+
+        t = text_in;
+        r = text_in;
+        
+        vars.forEach((v) => {
+            if(t.includes(v)) {
+                if(v === '$DATETIME'){
+                    let day = new Date().toLocaleString('en-us', {  weekday: 'long' });
+                    let date = new Date().toLocaleString('en-us', {  date: 'short' });
+                    r = t.replace(v, day + "<br>" + date);
+                }
+            }
+        });
+        
+        return r;
+    }
+    
+    function apply_weekday_theme_to_card(header_card_el, fac_json) {
+        let previous_bk_color = header_card_el.style.backgroundColor;
+        let previous_fg_color = header_card_el.style.color;
+
+        try {
+            if(fac_json.hasOwnProperty('weekday_card_bg_color_array') && 
+                fac_json.hasOwnProperty('weekday_card_text_color_array')) {
+
+                    let d = new Date();
+                    let weekday = d.getDay();
+                    console.log('applying weekday theme for day: ' + weekday);
+                    header_card_el.style.backgroundColor = fac_json.weekday_card_bg_color_array[weekday - 1];
+                    header_card_el.style.color = fac_json.weekday_card_text_color_array[weekday - 1];        
+            }
+            else
+                console.log('no data to apply weekday theme ');
+        } catch (e) {
+            // restore
+            console.log('error applying weekday theme: ' + e.message);
+            header_card_el.style.backgroundColor = previous_bk_color;
+            header_card_el.style.color = previous_fg_color;
+        }
+    }
+
+    function create_card_element(id, card_header, card_body, card_footer, card_btns, theme_string)
+    {
+        let el = document.createElement("DIV");
+        el.className =  theme_string + " card text-center mt-5";
+        el.id = "card-" + id;
+        document.querySelectorAll("div.card")
+        
+        // console.log('card theme classes: ' + theme_string);
+
+        if(card_header!=="") {
+            let hdr = document.createElement("DIV");
+            hdr.className = "card-header bg-dark text-light";
+            hdr.innerHTML = card_header;
+            hdr.id = el.id + "-hdr"
+            el.appendChild(hdr);
+            
+        }
+        
+
+        if(card_body!=="") {
+            let bdy = document.createElement("DIV");
+            bdy.className = "card-body";
+            bdy.innerHTML = card_body;
+            bdy.id = el.id + "-bdy"
+            el.appendChild(bdy);
+
+            if(card_btns.length > 0)
+            {
+                card_btns.forEach(element => {
+                    let row = document.createElement("DIV");
+                    row.className = "card-row text-center mb-2";
+            
+                    el.appendChild(row);
+                    row.appendChild(element);
+                });   
+            }
+        }
+        
+        if(card_footer!=="")
+        {
+            let ftr = document.createElement("DIV");
+            ftr.className = "card-footer";
+            ftr.innerHTML = card_footer;
+            ftr.id = el.id + "-ftr"
+            el.appendChild(ftr);
+        }
+
+        if(theme_string === "weekday") {
+            
+            apply_weekday_theme_to_card(el);
+        }
+
+        return el;
+    }
+
+    function handler_next(called_by, flow, next_flow_el, all_buttons) {
+        
+        if(next_flow_el==="") {
+            // reset
+            let node = document.getElementById("top_el");
+            node.querySelectorAll('*').forEach(n => n.remove());
+            
+            setTimeout(handler_next(undefined, flow, first_flow_el), 1000);
+            return;            
+        }
+        // v2: 
+
+        let flow_el = flow[next_flow_el];
+        if(flow_el === undefined) 
+        {
+            console.log('Unknown flow element: ' + next_flow_el)
+            return;
+        }
+
+        if(called_by !== undefined){
+            
+            let parent = document.getElementById('top_el'); 
+            
+            // TODO: more than two sibling buttons
+            let sibling_div = called_by.parentElement.nextSibling === null ? called_by.parentElement.previousSibling:called_by.parentElement.nextSibling;
+            let sibling_btn = undefined;
+
+            if(sibling_div.lastElementChild) {
+                if( sibling_div.lastElementChild.tagName === "BUTTON")
+                {
+                    sibling_btn = sibling_div.lastElementChild;
+                }
+            }
+            
+            if(called_by.classList.contains('button-white')) {
+               // this button is not selected
+               called_by.classList.toggle( "button-white" );
+               called_by.classList.toggle( "button-blue" );               
+
+               if(sibling_btn !== undefined) {
+                    if(sibling_btn.classList.contains('button-blue')) {
+                        sibling_btn.classList.toggle( "button-white" );
+                        sibling_btn.classList.toggle( "button-blue" );                        
+                    }
+                }
+            }                
+
+            while(parent.lastElementChild && parent.lastElementChild !== called_by.parentElement.parentElement) {
+                parent.removeChild(parent.lastElementChild);
+            }        
+
+        }
+
+        let card_hdr = "";
+        let card_bdy = "";
+        let card_ftr = "";
+        let card_btns = [];
+
+        state_theme = flow_el.theme;
+
+        let flow_el_text = apply_variables_in_text(flow_el.text);
+
+        if(flow_el.type === "statement") {
+
+            
+
+            let nxt = flow_el.next;
+            card_bdy = flow_el_text; 
+            card_hdr = flow_el.short;
+            card_ftr = "";
+
+
+            if(nxt !== undefined && nxt!=="" && nxt !== "end")
+            {
+                let btn = document.createElement("BUTTON");
+                btn.innerHTML=`Next`;
+                btn.className = "button-general button-white "; //"btn btn-primary mb-2 mr-2";
+                btn.tabIndex = 0;
+                // btn.id = id;
+                btn.addEventListener("click", function() { handler_next(btn, flow, nxt, [btn]); }, false);    
+                card_btns.push(btn);
+            }
+            else {// last element
+                if(nxt !== "end") {
+                    let btn = document.createElement("BUTTON");
+                    btn.innerHTML=`Reset`;
+                    btn.className = "button-general button-white"; //"btn btn-primary mb-2 mr-2";
+                    btn.tabIndex = 0;
+                    // btn.id = id;
+                    btn.addEventListener("click", function() { handler_next(btn, flow, nxt, [btn]); }, false);    
+                    card_btns.push(btn);
+                }                
+            }
+        }
+        else if(flow_el.type === "bool_decision") {
+            
+            let nxt_yes = flow_el.yes;
+            let nxt_no = flow_el.no;
+            card_bdy = flow_el_text;
+            card_hdr = flow_el.short;
+            card_ftr = "";
+
+            if(nxt_yes !== undefined && nxt_no !== undefined)
+            {
+                let yes_btn = document.createElement("BUTTON");
+                yes_btn.innerHTML=`Yes`;
+                yes_btn.className = "button-general button-white" ; //"btn btn-primary  mb-2 mr-2";
+                yes_btn.tabIndex = 0;
+                // yes_btn.id = nxt_yes;
+                
+                let no_btn = document.createElement("BUTTON");
+                no_btn.innerHTML=`No`;
+                no_btn.className = "button-general button-white"; //"btn btn-primary  mb-2 mr-2";
+                no_btn.tabIndex = 0;
+                // no_btn.id = nxt_no;
+                
+                yes_btn.addEventListener("click", function() { handler_next(yes_btn, flow, nxt_yes, [yes_btn, no_btn]); }, false);
+                card_btns.push(yes_btn);
+                no_btn.addEventListener("click", function() { handler_next(no_btn, flow, nxt_no, [yes_btn, no_btn]); }, false);
+                card_btns.push(no_btn);
+            }            
+        }
+        
+        let new_el = create_card_element(next_flow_el, card_hdr, card_bdy, card_ftr, card_btns, state_theme);
+        document.getElementById('top_el').appendChild(new_el);    
+        document.getElementById('bottom_ftr_info').scrollIntoView(false);
+    }   
+
+    // this function is used when something goes wrong
+    function show_exceptions(hdr, bdy, ftr) {
+        let new_el = create_card_element("starting", hdr, bdy, ftr, [], "red");
+        // remove if there is already one
+        if(document.getElementById(new_el.id)!==null)
+            document.getElementById('top_el').innerHTML = "";
+        document.getElementById('top_el').appendChild(new_el);    
+    }
+
+    function setup_header(fac_json) {
+        document.getElementById('top_hdr_img').src = fac_json.image;
+        document.getElementById('top_hdr').style.backgroundColor = fac_json.header_color;
+        document.getElementById('top_hdr').style.color = fac_json.header_text_color;
+        document.getElementById('top_hdr_info').innerHTML = fac_json.name;        
+    }
+
+
+    function setup_body_color(fac_json) {
+        if(fac_json.hasOwnProperty('weekday_background_color_array') &&
+            fac_json.hasOwnProperty('weekday_text_color_array'))
+        {
+            let bg_color = '#ffffff';
+            let fg_color = '#000000';
+
+            try {
+                let d = new Date();
+                let d_of_wk = d.getDay();
+                
+                bg_color = fac_json.weekday_background_color_array[d_of_wk - 1];
+                fg_color = fac_json.weekday_text_color_array[d_of_wk - 1];
+            }
+            catch(e) {
+                console.log('Error setting up bg color: ' + e.message);
+            }
+            document.getElementsByTagName('body')[0].style.backgroundColor = bg_color;
+            document.getElementsByTagName('body')[0].style.color = fg_color;
+            // console.log('Setting up colors for the weekday: ' + bg_color + '/' + fg_color);
+        }        
+    }
+
+    function setup_facility(fac_json) {
+        setup_header(fac_json);
+        setup_body_color(fac_json);
+    }
+
+    function is_enabled(fac_json) {
+        if(fac_json.flow_enabled === false)
+        {
+            return false;    
+        }
+        
+        if(Date.parse(fac_json.effective_from) > Date.now()
+            || Date.parse(fac_json.effective_till) < Date.now())
+        {   // Screening protocol is not active today
+            return false;    
+        }
+
+        return true;
+    }
+
+    function default_loop() {
+        let facilitydata = [{"id":6,"name":"VA Facility Entrance Protocol For 810/811 Vermont Ave","image":"https://prod-va-gov-assets.s3-us-gov-west-1.amazonaws.com/img/header-logo.png","header_color":"#112e51","header_text_color":"#ffffff","created_by":"Joseph Nassar","created_on":"06/23/2020","effective_from":"06/20/2020","effective_till":"06/19/2021","flow_enabled":true,"address":"Any","gps_coord":"","sms_number":"","flow_id":6}];
+        let flows = [
+            {
+                "id": 6,
+                "flow": {
+                    "start": {
+                        "type": "bool_decision",
+                        "short": "",
+                        "theme": "white-card",
+                        "text": "<div class='text-left'>In the last 14 days, have you traveled internationally?<div>",
+                        "sms": "In the last 14 days, have you traveled internationally?",
+                        "info": "There are hotspots identified internationally.",
+                        "yes": "b10",
+                        "no": "b1"
+                    },
+                    "b1": {
+                        "type": "bool_decision",
+                        "short": "",
+                        "text": "<div class='text-left'>Are you experiencing any symptoms of COVID-19: <br><br><ul>\n                        <li> coughing</li><li> fever or chills</li><li> shortness of breath or difficulty breathing</li><li> fatigue</li><li> headache</li></ul>\n                        </div>",
+                        "theme": "white-card",
+                        "sms": "Are you experiencing any symptoms of COVID-19 (e.g., coughing, fever or chills, shortness of breath or difficulty breathing, fatigue, headache)?",
+                        "info": "These are the most common symptoms associated with Covid-19.",
+                        "yes": "b10",
+                        "no": "b2"
+                    },
+                    "b2": {
+                        "type": "bool_decision",
+                        "short": "",
+                        "theme": "white-card",
+                        "text": "<div class='text-left'>In the last 14 days, have you received instructions from a public health authority to self-observe, self-isolate, or self-quarantine?</div>",
+                        "sms": "Within the past 14 days, have you received instruction from a public health or medical professional to self-monitor, self-isolate, or self-quarantine because of concerns about COVID-19 infection? This includes you receiving a COVID-19 test recommended by a medical professional, with results still pending. Please enter Yes or No",
+                        "info": "Covid-19 is best contained through self-quarantine and social distancing. You should take safety measure even when test results are pending.",
+                        "yes": "b10",
+                        "no": "b3"
+                    },
+                    "b3": {
+                        "type": "bool_decision",
+                        "short": "",
+                        "theme": "white-card",
+                        "text": "<div class='text-left'>In the last 14 days, have you been diagnosed with or been in close contact with a person diagnosed with COVID-19?</div>",
+                        "sms": "Within the past 14 days, have you received instruction from a public health or medical professional to self-monitor, self-isolate, or self-quarantine because of concerns about COVID-19 infection? This includes you receiving a COVID-19 test recommended by a medical professional, with results still pending. Please enter Yes or No",
+                        "info": "Covid-19 is best contained through self-quarantine and social distancing. You should take safety measure even when test results are pending.",
+                        "yes": "b10",
+                        "no": "b20"
+                    },
+                    "b10": {
+                        "type": "statement",
+                        "short": "",
+                        "theme": "cyan-card",
+                        "text": "<span style='font-size:2.5em; line-height: 1.2em;'>More Screening Needed.</span>\n                        <hr>Valid for $DATETIME.\n                        <hr>Please show this screen to security at the facility entrance.",
+                        "sms": "Access to VA Building Not Approved.",
+                        "info": "Your help in containing this epidemic is highly appreciate.",
+                        "next": ""
+                    },
+                    "b20": {
+                        "type": "statement",
+                        "short": "",
+                        "theme": "blue-card",
+                        "text": "<span style='font-size:50px; text-align: center;'>&#9745;</span><br>\n                        <span style='font-size: 2em; line-height: 1.2em; text-align: left;'>810/811 Vermont Ave Access Approved.</span>\n                        <hr>Valid for $DATETIME.<hr>Please show this screen to security at the facility entrance.",
+                        "sms": "Access to the VA Buildings 810/811 Vermont Ave Approved.\nPlease show this screen to security at the facility entrance.",
+                        "info": "You can enter the facilities but follow safety protocols and Social Distancing.",
+                        "next": ""
+                    }
+                }
+            }
+        ];
+        let flowchart = flows[0].flow;
+        setup_facility(facilitydata[0]);
+        handler_next(undefined, flowchart, first_flow_el);
+    }
+
+    // federalist version of the site
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    let facility_id;
+    var state_theme="";
+    let first_flow_el = "start";
+
+    if(urlParams.has('facility')){
+        facility_id = urlParams.get('facility');
+        console.log("Getting Facility ID: " + facility_id);
+    
+        // get flow string id
+        const page_url = new URL(window.location.href);
+        const facilities_api_url = page_url.origin + '/api/facilities/' + facility_id;
+        show_exceptions("Loading...", "","");
+        fetch(facilities_api_url)
+        .then(
+            function(response) {
+                if (response.status !== 200) {
+                    show_exceptions("Error", "Could not acess facilities data...", "Please try later");
+                    return;
+                }
+
+                // Examine the text in the response
+                response.json().then(function(facility_data) {
+                    
+                    setup_facility(facility_data[0]);
+
+                    let flow_id = facility_data[0].flow_id;
+                    if(flow_id !== undefined)
+                    { // see if this facility flow is enabled and effecticve
+                        if(is_enabled(facility_data[0]) === false) {
+                            show_exceptions("Not Screening Today", "The Screening Protocol defined for this facility is not in effect today.", "");
+                            return;
+                        }
+
+                        const flow_api_url = page_url.origin + '/api/flows/' + flow_id;
+                        
+                        // get flow for that id
+                        fetch(flow_api_url)
+                        .then(
+                            function(resp) {
+                            if (resp.status !== 200) {
+                                console.log('Looks like there was a problem. Status Code: ' + resp.status);
+                                show_exceptions("Error", "Could not acess screening data...", "Please try later");
+                                return;
+                            }
+
+                            // Examine the text in the response
+                            resp.json().then(function(flow_data) {
+                                // console.log("Flow Data: " + flow_data);
+                                let flow_json = flow_data[0];
+                                let flow_chart = flow_json.flow;
+                                // let count = Object.keys(flow).length;
+                                
+                                document.getElementById('top_el').innerHTML = "";   // clear up
+                                handler_next(undefined, flow_chart, first_flow_el);
+                            });
+                            }
+                        )
+                        .catch(function(err) {
+                            console.log('Fetch Error :-S', err);
+                            show_exceptions("Error", "Could not fetch data... Error: " + err, "Please try later");
+                        });
+                    }
+                });
+            }
+        )
+        .catch(function(err) {
+            console.log('Fetch Error :-S', err);
+            show_exceptions("Error", "Could not fetch data... Error: " + err, "Please try later");
+        });
+    }
+    else {
+        facility_id = 0;
+        console.log('Setting default flow');
+        default_loop();        
+    }
+
+</script>
