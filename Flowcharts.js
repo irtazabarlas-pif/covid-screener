@@ -388,6 +388,73 @@ const flowcharts = [
                 "next": ""
             }
         },
+    },
+    {
+        "id": 7,    
+        "flow": {   
+            "start": {
+                "type": "bool_decision",
+                "short": "", //Symptoms to Watch?",
+                "text": `<div class='text-left'>Have you had any of the following NEW or WORSENING conditions in the past 48 hours? <br><br><ul>
+                        <li> A fever of 100.4F or higher or felt feverish</li>
+                        <li> Cough, shortness of breath or difficulty breathing</li>
+                        <li> Sore throat</li>
+                        <li> Muscle or body aches</li>
+                        <li> Chills</li>
+                        <li> Nausea, vomiting or diarrhea</li>
+                        <li> Change in smell or taste?</li>
+                        </ul>
+                        </div>`,
+                "theme": "white-card",                
+                "sms" : "",
+                "info": "",
+                "yes" : "b10",
+                "no"  : "b2"
+            },
+            "b2": {
+                "type": "bool_decision",
+                "short": "", //Proximity Risk?",
+                "theme": "white-card",
+                "text": "<div class='text-left'>Within the past 14 days, have you been in close contact (6 feet or closer for at least 15 minutes) with a person who tested positive for COVID-19 or with anyone who has any COVID-19 symptoms?<br><small> (fever, cough, shortness of breath or difficulty breathing, sore throat, muscle or body aches, changes in smell or taste, diarrhea)</small></div>",
+                "sms" : "",
+                "info": "",
+                "yes" : "b10",
+                "no"  : "b3"
+            },            
+            "b3": {
+                "type": "bool_decision",
+                "short": "", //Advisory?",
+                "theme": "white-card",
+                "text": "<div class='text-left'>Within the past 14 days, have you been told by a public health or medical professional to self-monitor, self-isolate, or self-quarantine because of concerns about COVID-19 infection? This includes you receiving a COVID-19 test recommended by a medical professional, with results still pending.</div>",
+                "sms" : "",
+                "info": "",
+                "yes" : "b10",
+                "no"  : "b20"
+            },                        
+            "b10": {
+                "type": "statement",
+                "short": "", //Not Approved
+                "theme": "cyan-card",
+                "text": `<span style='font-size:2em; line-height: 1.2em;'>Access to VA Facilities not approved</span>
+                        <hr>Valid for $DATETIME.
+                        <hr>Contact your supervisor for further instructions.`,
+                "sms" : "",
+                "info": "",
+                "next": ""
+            },
+            "b20": {
+                "type": "statement",
+                "short": "", //<span style='text-align: center;'>Welcome!</span>",
+                "theme": "blue-card",
+                "text": `<span style='font-size:50px; text-align: center;'>&#9745;</span><br>
+                        <span style='font-size: 2em; line-height: 1.2em; text-align: left;'>Access to VA Facilities Approved</span>
+                        <hr>Valid for $DATETIME.<hr>
+                        Please show this screen to security at the facility entrance, if required.`,
+                "sms" : "",
+                "info": "",
+                "next": ""
+            }
+        },
     }          
 ];
 
