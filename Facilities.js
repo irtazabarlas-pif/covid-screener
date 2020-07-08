@@ -85,7 +85,7 @@ const facilities = [
     },
     {
         id: 6, // each facility has its unique ID
-        name: 'VA Facility Entrance Protocol For 810/811 Vermont Ave',
+        name: 'VA Facility Entrance Protocol For VACO',
         image: 'https://prod-va-gov-assets.s3-us-gov-west-1.amazonaws.com/img/header-logo.png',
         header_color: '#112e51',
         header_text_color: '#ffffff',   //TODO
