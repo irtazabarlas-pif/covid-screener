@@ -369,9 +369,9 @@ const flowcharts = [
                 "type": "statement",
                 "short": "", //Screening Needed",
                 "theme": "cyan-card",
-                "text": `<span style='font-size:2.5em; line-height: 1.2em;'>More Screening Needed.</span>
+                "text": `<span style='font-size:2.5em; line-height: 1.2em;'>VACO access denied.</span>
                         <hr>Valid for $DATETIME.
-                        <hr>Please show this screen to security at the facility entrance.`,
+                        <hr>Contact your supervisor for further instructions.`,
                 "sms" : "Access to VA Building Not Approved.",
                 "info": "Your help in containing this epidemic is highly appreciate.",
                 "next": ""
