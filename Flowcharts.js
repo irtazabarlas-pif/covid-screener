@@ -381,9 +381,9 @@ const flowcharts = [
                 "short": "", //<span style='text-align: center;'>Welcome!</span>",
                 "theme": "blue-card",
                 "text": `<span style='font-size:50px; text-align: center;'>&#9745;</span><br>
-                        <span style='font-size: 2em; line-height: 1.2em; text-align: left;'>810/811 Vermont Ave Access Approved.</span>
+                        <span style='font-size: 2em; line-height: 1.2em; text-align: left;'>VACO Access Approved.</span>
                         <hr>Valid for $DATETIME.<hr>Please show this screen to security at the facility entrance.`,
-                "sms" : "Access to the VA Buildings 810/811 Vermont Ave Approved.\nPlease show this screen to security at the facility entrance.",
+                "sms" : "Access to VACO Approved.\nPlease show this screen to security at the facility entrance.",
                 "info": "You can enter the facilities but follow safety protocols and Social Distancing.",
                 "next": ""
             }
