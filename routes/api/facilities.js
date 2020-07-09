@@ -1,4 +1,5 @@
 const express = require('express');
+
 const router = express.Router();
 
 const uuid = require('uuid');
@@ -10,8 +11,6 @@ var   smsHelper = require('../../sms_helper');
 
 // test cookies
 // const sessioncookie = require('cookie-session');
-
-/// CRUD Ops
 
 // get all facilities
  router.get('/', (req, res) => {

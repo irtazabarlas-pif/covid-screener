@@ -1,4 +1,5 @@
 const express = require('express');
+var cors = require('cors');
 const path = require('path');
 const exphbs = require('express-handlebars');
 const facilities = require('./Facilities');
@@ -14,11 +15,11 @@ const app = express();
 
 // init middleware
 // app.use(logger);
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 
-// Handlebars Middleware
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
